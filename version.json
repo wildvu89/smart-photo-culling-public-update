@@ -1,0 +1,16 @@
+{
+  "version": "V00.03",
+  "download_url": "https://github.com/wildvu89/smart-photo-culling-public-update/releases/tag/V00.03",
+  "changelog_vi": [
+    "Khắc phục và hoàn thiện kết nối database trung tâm Supabase PostgreSQL (lưu trữ data vĩnh viễn).",
+    "Sửa đổi cơ chế auto-update tự động kéo code mới nhất từ GitHub cho Mac.",
+    "Tối ưu hóa hiệu năng phân tích ảnh RAW và culling thư mục lớn.",
+    "Sửa lỗi nút con mắt bật/tắt hiển thị mật khẩu ở màn hình đăng nhập/đăng ký."
+  ],
+  "changelog_en": [
+    "Fixed and finalized connection to centralized Supabase PostgreSQL database (permanent data storage).",
+    "Updated auto-update mechanism to fetch the latest code from GitHub for Mac.",
+    "Optimized RAW photo analysis and culling performance for large folders.",
+    "Fixed password visibility toggle eye button on login/register screens."
+  ]
+}

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Photo Culling // Phân Tích & Lọc Ảnh Studio Thông Minh</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=00.03">
+</head>
+<body>
+    <div class="app-container">
+        <!-- BACKGROUND DECORATIONS -->
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+
+        <!-- Language Switcher Float on Setup -->
+        <div class="setup-lang-bar">
+            <div class="lang-switcher glass-panel" style="display: flex; gap: 8px; align-items: center;">
+                <button id="admin-panel-btn" class="secondary-btn btn-sm" style="display: none; height: 24px; padding: 2px 10px; font-size: 0.75rem; background: var(--accent-gradient); color: #000; border: none; font-weight: 700;">ADMIN PANEL</button>
+                <button id="logout-btn" class="secondary-btn btn-sm" style="display: none; height: 24px; padding: 2px 10px; font-size: 0.75rem;">ĐĂNG XUẤT</button>
+                <button id="setup-lang-vi" class="lang-btn active">VI</button>
+                <button id="setup-lang-en" class="lang-btn">EN</button>
+            </div>
+        </div>
+
+        <!-- 0. AUTHENTICATION SCREEN -->
+        <main id="auth-screen" class="screen active">
+            <div class="auth-card glass-panel">
+                <div class="brand-header">
+                    <div class="brand-logo-container">
+                        <img src="logo.png" alt="SPC Logo" class="app-logo-img large">
+                    </div>
+                    <div class="brand-text">
+                        <h1 class="brand-title">SMART PHOTO CULLING</h1>
+                        <p data-i18n="auth_tagline">Đăng Nhập & Kích Hoạt Thiết Bị</p>
+                    </div>
+                </div>
+
+                <div class="auth-tabs">
+                    <button id="tab-login" class="auth-tab active" data-i18n="tab_login">Đăng Nhập</button>
+                    <button id="tab-register" class="auth-tab" data-i18n="tab_register">Đăng Ký</button>
+                </div>
+
+                <!-- LOGIN FORM -->
+                <form id="login-form" class="auth-form active" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="login-username" data-i18n="login_username_label">Tên đăng nhập</label>
+                        <input type="text" id="login-username" placeholder="Nhập tên đăng nhập" autocomplete="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" data-i18n="login_password_label">Mật khẩu</label>
+                        <div class="password-input-container">
+                            <input type="password" id="login-password" placeholder="Nhập mật khẩu" autocomplete="current-password" required>
+                            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-closed-icon"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" id="btn-login-submit" class="primary-btn full-width" data-i18n="btn_login">ĐĂNG NHẬP</button>
+                        <a href="#" id="btn-forgot-password" class="auth-link" data-i18n="forgot_password_link">Quên mật khẩu?</a>
+                    </div>
+                </form>
+
+                <!-- REGISTER FORM -->
+                <form id="register-form" class="auth-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="reg-fullname" data-i18n="reg_fullname_label">Tên người dùng (Họ và Tên)</label>
+                        <input type="text" id="reg-fullname" placeholder="Ví dụ: Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email" data-i18n="reg_email_label">Gmail</label>
+                        <input type="email" id="reg-email" placeholder="Ví dụ: nguyenvana@gmail.com" autocomplete="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-username" data-i18n="reg_username_label">Tên đăng nhập</label>
+                        <input type="text" id="reg-username" placeholder="Nhập tên đăng nhập viết liền không dấu" autocomplete="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password" data-i18n="reg_password_label">Mật khẩu</label>
+                        <div class="password-input-container">
+                            <input type="password" id="reg-password" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password" required>
+                            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('reg-password', this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-closed-icon"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-referral" data-i18n="reg_referral_label">Mã giới thiệu (Sale Code)</label>
+                        <input type="text" id="reg-referral" placeholder="Ví dụ: NGOCTHANG" required>
+                        <p class="input-tip" data-i18n="reg_referral_tip">Nhập mã viết hoa tên của người làm sale để được giá tốt.</p>
+                    </div>
+                    <button type="submit" id="btn-register-submit" class="primary-btn full-width" data-i18n="btn_register" style="margin-top: 10px;">ĐĂNG KÝ</button>
+                </form>
+
+                <!-- FORGOT PASSWORD FORM -->
+                <form id="forgot-form" class="auth-form" onsubmit="return false;">
+                    <p class="forgot-desc" data-i18n="forgot_desc">Nhập tên đăng nhập hoặc Gmail của bạn. Chúng tôi sẽ tự động cấp mật khẩu mới gửi về Gmail đăng ký của bạn.</p>
+                    <div class="form-group">
+                        <label for="forgot-identity" data-i18n="forgot_identity_label">Tên đăng nhập hoặc Gmail</label>
+                        <input type="text" id="forgot-identity" placeholder="Nhập username hoặc gmail" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" id="btn-forgot-submit" class="primary-btn full-width" data-i18n="btn_reset_password">CẤP LẠI MẬT KHẨU</button>
+                        <a href="#" id="btn-back-to-login" class="auth-link" data-i18n="back_to_login_link">Quay lại Đăng nhập</a>
+                    </div>
+                </form>
+                
+                <div id="auth-error-msg" class="auth-error-message"></div>
+                <div id="auth-success-msg" class="auth-success-message"></div>
+            </div>
+        </main>
+
+        <!-- 1. SETUP / CONFIGURATION SCREEN -->
+        <main id="setup-screen" class="screen">
+            <div class="setup-card glass-panel">
+                <div class="brand-header">
+                    <div class="brand-logo-container">
+                        <img src="logo.png" alt="SPC Logo" class="app-logo-img large">
+                    </div>
+                    <div class="brand-text">
+                        <h1 class="brand-title">SMART PHOTO CULLING</h1>
+                        <p data-i18n="tagline">Hệ Thống Phân Nhóm & Phân Tích Chất Lượng Ảnh</p>
+                    </div>
+                </div>
+
+                <div class="setup-body">
+                    <!-- Source Directory -->
+                    <div class="form-group">
+                        <label for="source-dir-input" data-i18n="source_label">Đường dẫn thư mục ảnh gốc</label>
+                        <div class="input-with-action">
+                            <input type="text" id="source-dir-input" placeholder="Ví dụ: C:\Users\MSI\Pictures\Wedding_Shoot" data-i18n-placeholder="source_placeholder" autocomplete="off">
+                            <button id="browse-source-btn" class="secondary-btn browse-btn" type="button" title="Chọn thư mục" data-i18n-title="browse_tooltip">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            </button>
+                        </div>
+                        <p class="input-tip" data-i18n="source_tip">Các định dạng RAW (CR2, CR3, NEF, ARW...) và JPEG sẽ được tự động phân tích.</p>
+                    </div>
+
+                    <!-- Export Directory -->
+                    <div class="form-group">
+                        <label for="export-dir-setup-input" data-i18n="export_folder_setup_label">Thư mục lưu ảnh đã lọc</label>
+                        <div class="input-with-action">
+                            <input type="text" id="export-dir-setup-input" placeholder="Ví dụ: C:\Users\MSI\Pictures\Wedding_Shoot\Selected" data-i18n-placeholder="export_setup_placeholder" autocomplete="off">
+                            <button id="browse-export-btn" class="secondary-btn browse-btn" type="button" title="Chọn thư mục" data-i18n-title="browse_tooltip">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Parameters -->
+                    <div class="parameters-section">
+                        <h3 data-i18n="pipeline_params">Tham số Phân Tích</h3>
+                        
+                        <div class="param-grid">
+                            <!-- Time Grouping Threshold -->
+                            <div class="param-card">
+                                <div class="param-header">
+                                    <span data-i18n="burst_window">Khoảng Chụp Liên Tiếp</span>
+                                    <span id="val-time-threshold">10s</span>
+                                </div>
+                                <input type="range" id="time-threshold-input" min="1" max="30" value="10">
+                                <p class="param-desc" data-i18n="burst_window_desc">Khoảng thời gian tối đa giữa các ảnh trong một chuỗi chụp liên tục.</p>
+                            </div>
+
+                            <!-- Visual Similarity Threshold -->
+                            <div class="param-card">
+                                <div class="param-header">
+                                    <span data-i18n="pose_limit">Giới Hạn Khác Biệt Tư Thế</span>
+                                    <span id="val-sim-threshold">83%</span>
+                                </div>
+                                <input type="range" id="sim-threshold-input" min="1" max="100" value="83">
+                                <p class="param-desc" data-i18n="pose_limit_desc">Độ sai biệt tư thế (Pose) để phân biệt góc máy. Mức thấp sẽ giữ lại nhiều biến thể.</p>
+                            </div>
+                        </div>
+
+                        <!-- Quality filter option -->
+                        <div class="form-group-checkbox">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="reject-bad-photos-checkbox" checked>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label" data-i18n="reject_bad_label">Tự động lọc bỏ ảnh lỗi (nhòe, nhắm mắt, cháy sáng)</span>
+                            </label>
+                        </div>
+                        <!-- Pose variation preservation option -->
+                        <div class="form-group-checkbox" style="margin-top: 12px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="keep-pose-variations-checkbox" checked>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label" data-i18n="keep_pose_label">Tự động chọn mỗi ảnh/pose dáng khác nhau 1 tấm</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Start Button -->
+                    <button id="start-scan-btn" class="primary-btn">
+                        <span data-i18n="begin_culling">Bắt Đầu Lọc Ảnh Thông Minh</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Setup footer (Contact info) -->
+            <div class="setup-footer">
+                <div class="footer-brand">Vision Creative Space</div>
+                <div class="footer-contacts">
+                    <a href="https://www.facebook.com/vision.creativespace" target="_blank" class="contact-item" title="Facebook">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <span>vision.creativespace</span>
+                    </a>
+                    <div class="contact-item" title="Địa chỉ">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>327/9 Hạnh Trí, Ninh Sơn, Khánh Hòa</span>
+                    </div>
+                    <a href="https://zalo.me/0982424230" target="_blank" class="contact-item" title="Nhắn Zalo">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.45 1.37 4.63 3.53 6.02L4 21l5.13-1.71C10.09 19.66 11.05 19.8 12 19.8c5.52 0 10-3.58 10-8s-4.48-8-10-8zm2.5 13H9.5v-1.5l3.2-3.7H9.5V8h5v1.5l-3.2 3.7h3.2V15z"/></svg>
+                        <span>Zalo: 0982 4242 30</span>
+                    </a>
+                    <a href="tel:0982424230" class="contact-item" title="Gọi Điện thoại">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>Phone: 0982 4242 30</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- 2. SCANNING / PROGRESS SCREEN -->
+        <main id="scanning-screen" class="screen">
+            <div class="scanning-card glass-panel">
+                <div class="spinner-container">
+                    <div class="camera-lens-animation">
+                        <div class="lens-shutter"></div>
+                    </div>
+                </div>
+                <h2 data-i18n="analyzing_title">Đang Phân Tích Thư Viện Ảnh...</h2>
+                <p id="scanning-current-file" data-i18n="preparing_pipeline">Đang khởi tạo các module xử lý...</p>
+
+                <div class="progress-wrapper">
+                    <div class="progress-bar-container">
+                        <div id="scan-progress-bar" class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-details">
+                        <span id="scan-progress-pct">0%</span>
+                        <span id="scan-progress-count">0 / 0 file</span>
+                    </div>
+                </div>
+
+                <div class="scan-stats-live">
+                    <div class="stat-live-item">
+                        <span class="label">RAWs</span>
+                        <span id="live-stat-raw">0</span>
+                    </div>
+                    <div class="stat-live-item">
+                        <span class="label">JPEGs</span>
+                        <span id="live-stat-jpg">0</span>
+                    </div>
+                    <div class="stat-live-item">
+                        <span class="label" data-i18n="live_scenes">Nhóm ảnh</span>
+                        <span id="live-stat-groups">0</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 3. DASHBOARD / WORKSPACE SCREEN -->
+        <main id="dashboard-screen" class="screen">
+            <!-- HEADER -->
+            <header class="app-header glass-panel">
+                <div class="header-logo">
+                    <img src="logo.png" alt="SPC Logo" class="app-logo-img small">
+                    <span class="brand-title">SMART PHOTO CULLING</span>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="header-stats">
+                    <div class="stat-pill">
+                        <span class="label" data-i18n="stat_total">Tổng</span>
+                        <span id="stat-total" class="value">0</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="label">RAW / JPG</span>
+                        <span id="stat-ratio" class="value">0 / 0</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="label" data-i18n="stat_scenes">Nhóm</span>
+                        <span id="stat-groups" class="value">0</span>
+                    </div>
+                    <div class="stat-pill keeper">
+                        <span class="label" data-i18n="stat_keep">Giữ</span>
+                        <span id="stat-keep" class="value text-success">0</span>
+                    </div>
+                    <div class="stat-pill reject">
+                        <span class="label" data-i18n="stat_reject">Loại</span>
+                        <span id="stat-reject" class="value text-danger">0</span>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <button id="dash-admin-btn" class="secondary-btn btn-sm" style="display: none; background: var(--accent-gradient); color: #000; border: none; font-weight: 700; height: 38px; border-radius: var(--radius-sm);">ADMIN PANEL</button>
+                    <!-- Language switcher inside dashboard header -->
+                    <div class="lang-switcher header-lang glass-panel">
+                        <button id="dashboard-lang-vi" class="lang-btn active">VI</button>
+                        <button id="dashboard-lang-en" class="lang-btn">EN</button>
+                    </div>
+                    <button id="done-btn" class="primary-btn btn-sm" data-i18n="done_btn" style="box-shadow: none; padding: 6px 16px; background: var(--success-gradient);">XONG</button>
+                    <button id="show-report-btn" class="icon-btn" title="Xem báo cáo chi tiết" data-i18n-title="view_report_tooltip">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </button>
+                    <button id="back-to-setup-btn" class="icon-btn" title="Quét thư mục khác" data-i18n-title="back_tooltip">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- WORKSPACE BODY -->
+            <div class="workspace-body">
+                <!-- Side Panel: Scenes list -->
+                <aside class="scenes-sidebar glass-panel">
+                    <div class="sidebar-header">
+                        <h2 data-i18n="scene_groups_title">Nhóm Khung Hình</h2>
+                        <span id="scenes-count-badge" class="count-badge">0</span>
+                    </div>
+                    <div id="scenes-list" class="scenes-list-container">
+                        <!-- Scene items dynamically rendered here -->
+                    </div>
+                </aside>
+
+                <!-- Main Section: Grid & Viewer -->
+                <section class="viewer-section">
+                    <!-- Scene Header / Controls -->
+                    <div class="scene-viewer-header glass-panel">
+                        <div>
+                            <h2 id="current-scene-title">Nhóm #1</h2>
+                            <p id="current-scene-desc" data-i18n="select_group_desc">Chọn một nhóm ảnh ở thanh bên để duyệt.</p>
+                        </div>
+                        <div class="viewer-layout-controls">
+                            <button id="toggle-size-btn" class="secondary-btn btn-sm">
+                                <span data-i18n="grid_large">Lưới Lớn</span>
+                            </button>
+                            <button id="keep-all-scene-btn" class="secondary-btn btn-sm text-success">
+                                <span data-i18n="keep_all_btn">Giữ Tất Cả</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Images Grid -->
+                    <div id="images-grid" class="images-grid-container grid-large">
+                        <!-- Photos inside selected scene rendered here -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- EXPORT BAR -->
+            <footer class="export-bar glass-panel">
+                <div class="export-path-group">
+                    <label for="export-dir-input" data-i18n="export_folder_label">Thư mục xuất ảnh</label>
+                    <div class="input-with-action full-width">
+                        <input type="text" id="export-dir-input" placeholder="Ví dụ: C:\Users\MSI\Pictures\Wedding_Shoot\Selected" data-i18n-placeholder="export_placeholder">
+                        <button id="browse-export-dash-btn" class="secondary-btn browse-btn" type="button" title="Chọn thư mục" data-i18n-title="browse_tooltip">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="export-slider-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span data-i18n="keep_rate_label">Lọc Chi Tiết (Tỷ Lệ Giữ):</span>
+                        <span id="val-keep-rate">50%</span>
+                    </div>
+                    <input type="range" id="keep-rate-input" min="20" max="90" value="50">
+                </div>
+
+                <div class="export-actions">
+                    <button id="copy-selected-btn" class="primary-btn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <span data-i18n="copy_selected_btn">Sao Chép Ảnh Đã Chọn</span>
+                    </button>
+                </div>
+            </footer>
+        </main>
+
+        <!-- 4. REPORT MODAL -->
+        <div id="report-modal" class="modal-overlay">
+            <div class="modal-card glass-panel">
+                <div class="modal-header">
+                    <h2 data-i18n="report_title">Báo Cáo Lọc Ảnh</h2>
+                    <button id="close-report-btn" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="report-stats-grid">
+                        <div class="report-stat-card">
+                            <span class="value" id="rep-total">0</span>
+                            <span class="label" data-i18n="rep_total_label">Tổng số ảnh</span>
+                        </div>
+                        <div class="report-stat-card success">
+                            <span class="value" id="rep-keep">0</span>
+                            <span class="label" data-i18n="rep_keep_label">Giữ lại</span>
+                        </div>
+                        <div class="report-stat-card danger">
+                            <span class="value" id="rep-reject">0</span>
+                            <span class="label" data-i18n="rep_reject_label">Loại bỏ</span>
+                        </div>
+                        <div class="report-stat-card">
+                            <span class="value" id="rep-pct">0%</span>
+                            <span class="label" data-i18n="rep_ratio_label">Tỷ lệ giữ</span>
+                        </div>
+                    </div>
+
+                    <div class="report-section-details">
+                        <h3 data-i18n="deduction_summary_title">Chi tiết lý do loại bỏ ảnh</h3>
+                        <ul class="reason-list">
+                            <li>
+                                <span class="reason-label"><span class="bullet blurry"></span><span data-i18n="reason_blur">Ảnh bị nhòe / Mất nét</span></span>
+                                <span class="reason-count" id="rep-reason-blur">0 file</span>
+                            </li>
+                            <li>
+                                <span class="reason-label"><span class="bullet eyes"></span><span data-i18n="reason_eyes">Bị nhắm mắt</span></span>
+                                <span class="reason-count" id="rep-reason-eyes">0 file</span>
+                            </li>
+                            <li>
+                                <span class="reason-label"><span class="bullet exposure"></span><span data-i18n="reason_exposure">Lỗi phơi sáng (Cháy sáng / Quá tối)</span></span>
+                                <span class="reason-count" id="rep-reason-exposure">0 file</span>
+                            </li>
+                            <li>
+                                <span class="reason-label"><span class="bullet duplicate"></span><span data-i18n="reason_duplicate">Ảnh trùng lặp trong nhóm (Burst)</span></span>
+                                <span class="reason-count" id="rep-reason-duplicate">0 file</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-ok-btn" class="primary-btn" data-i18n="close_btn">Đóng</button>
+                </div>
+        </div>
+    </div>
+
+    <!-- 5. COPYING / EXPORT PROGRESS OVERLAY -->
+    <div id="copy-progress-overlay" class="modal-overlay">
+        <div class="scanning-card glass-panel">
+            <div class="spinner-container">
+                <div class="camera-lens-animation">
+                    <div class="lens-shutter"></div>
+                </div>
+            </div>
+            <h2 data-i18n="copying_title">Đang Sao Chép Ảnh...</h2>
+            <p id="copy-current-file">Đang chuẩn bị...</p>
+
+            <div class="progress-wrapper">
+                <div class="progress-bar-container">
+                    <div id="copy-progress-bar" class="progress-bar" style="width: 0%"></div>
+                </div>
+                <div class="progress-details">
+                    <span id="copy-progress-pct">0%</span>
+                    <span id="copy-progress-count">0 / 0 file</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- 6. CUSTOM FILE BROWSER MODAL -->
+    <div id="fs-browser-modal" class="modal-overlay">
+        <div class="fs-browser-card glass-panel">
+            <div class="modal-header">
+                <h3 data-i18n="select_folder_title">Chọn Thư Mục</h3>
+                <button id="close-fs-btn" class="close-btn">&times;</button>
+            </div>
+            
+            <div class="fs-path-bar">
+                <div id="fs-breadcrumbs" class="breadcrumbs-container"></div>
+                <button id="fs-up-btn" class="secondary-btn btn-sm" title="Thư mục cha" data-i18n-title="parent_folder_tooltip">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                </button>
+            </div>
+            
+            <div class="fs-browser-body">
+                <div class="fs-sidebar">
+                    <div class="fs-sidebar-section">
+                        <h4 data-i18n="shortcuts_title">Phím Tắt</h4>
+                        <div id="fs-shortcuts-list"></div>
+                    </div>
+                    <div class="fs-sidebar-section">
+                        <h4 data-i18n="drives_title">Ổ Đĩa</h4>
+                        <div id="fs-drives-list"></div>
+                    </div>
+                </div>
+                
+                <div class="fs-grid-wrapper">
+                    <div id="fs-grid" class="fs-grid-container"></div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="selected-path-display">
+                    <span class="label" data-i18n="selected_path_label">Đường dẫn:</span>
+                    <span id="fs-selected-path" class="path-value"></span>
+                </div>
+                <div class="modal-actions">
+                    <button id="fs-cancel-btn" class="secondary-btn" data-i18n="cancel_btn">Hủy</button>
+                    <button id="fs-ok-btn" class="primary-btn" data-i18n="ok_btn">Chọn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 7. UPDATE NOTIFICATION MODAL (Premium Redesign) -->
+    <div id="update-modal" class="modal-overlay">
+        <div class="update-modal-wrapper">
+            <!-- Animated glow orbs in background -->
+            <div class="update-orb update-orb-1"></div>
+            <div class="update-orb update-orb-2"></div>
+
+            <!-- Top banner with gradient & icon -->
+            <div class="update-modal-hero">
+                <div class="update-hero-badge">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span data-i18n="update_hero_badge">MỚI</span>
+                </div>
+                <h2 class="update-hero-title" data-i18n="update_title">Có phiên bản mới!</h2>
+                <p class="update-hero-sub" data-i18n="update_hero_sub">Cập nhật để trải nghiệm những cải tiến mới nhất.</p>
+                <button id="close-update-btn" class="update-close-btn" title="Đóng">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <!-- Version comparison strip -->
+            <div class="update-version-strip">
+                <div class="update-ver-block update-ver-old">
+                    <span class="update-ver-label" data-i18n="current_version_label">Hiện tại</span>
+                    <span class="update-ver-num" id="update-current-ver">V00.02</span>
+                </div>
+                <div class="update-ver-arrow">
+                    <div class="update-arrow-line"></div>
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+                </div>
+                <div class="update-ver-block update-ver-new">
+                    <span class="update-ver-label" data-i18n="latest_version_label">Mới nhất</span>
+                    <span class="update-ver-num" id="update-latest-ver">V00.03</span>
+                </div>
+            </div>
+
+            <!-- Changelog -->
+            <div class="update-changelog-wrap">
+                <div class="update-changelog-header">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--gold-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                    <span data-i18n="changelog_title">Có gì mới</span>
+                </div>
+                <ul id="update-changelog-list" class="update-changelog-list">
+                    <!-- Dynamic changelog points injected by JS -->
+                </ul>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="update-modal-actions">
+                <button id="update-later-btn" class="update-btn-later" data-i18n="later_btn">Để sau</button>
+                <a id="update-now-btn" href="#" target="_blank" class="update-btn-now">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"></polyline><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+                    <span data-i18n="update_now_btn">Cập nhật ngay</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. ADMIN PANEL MODAL -->
+    <div id="admin-panel-modal" class="modal-overlay">
+        <div class="admin-panel-card glass-panel">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--accent-purple)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                    <h3 data-i18n="admin_panel_title" style="font-family: var(--font-outfit); font-weight: 700;">Panel Admin - Quản lý Người dùng</h3>
+                </div>
+                <button id="close-admin-btn" class="close-btn">&times;</button>
+            </div>
+            
+            <div class="modal-body admin-modal-body">
+                <div class="admin-controls-row">
+                    <div class="admin-stats-summary">
+                        <span data-i18n="total_users_lbl">Tổng số tài khoản:</span> <strong id="admin-total-users">0</strong>
+                    </div>
+                    <button id="admin-refresh-btn" class="secondary-btn btn-sm">
+                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" style="margin-right: 5px;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        <span data-i18n="refresh_btn">Làm mới</span>
+                    </button>
+                </div>
+                
+                <div class="admin-table-wrapper">
+                    <table class="admin-users-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="col_fullname">Tên người dùng</th>
+                                <th data-i18n="col_username">Username</th>
+                                <th data-i18n="col_password">Mật khẩu</th>
+                                <th data-i18n="col_email">Gmail</th>
+                                <th data-i18n="col_referral">Mã giới thiệu</th>
+                                <th data-i18n="col_status">Trạng thái</th>
+                                <th style="min-width: 140px; text-align: center;">Thời hạn</th>
+                                <th data-i18n="col_devices">Thiết bị liên kết (CPU / RAM / IP / UUID)</th>
+                                <th data-i18n="col_action">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-users-tbody">
+                            <!-- Dynamic rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="admin-close-btn" class="primary-btn" data-i18n="close_btn">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="js/app.js?v=00.03"></script>
+</body>
+</html>
