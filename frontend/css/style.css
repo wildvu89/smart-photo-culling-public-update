@@ -1470,7 +1470,7 @@ a.contact-item:hover {
     border: 1px solid rgba(250, 204, 21, 0.15);
     overflow: hidden;
     padding: 0;
-    resize: both;
+    position: relative;
 }
 
 .fs-path-bar {
@@ -1558,6 +1558,7 @@ a.contact-item:hover {
     gap: 8px;
     padding: 6px 10px;
     font-size: 0.85rem;
+    line-height: 1.2;
     color: var(--text-muted);
     border-radius: 6px;
     cursor: pointer;
@@ -1565,6 +1566,8 @@ a.contact-item:hover {
     text-align: left;
     background: none;
     width: 100%;
+    min-height: 34px;
+    overflow: hidden;
 }
 
 .fs-shortcut-item:hover, .fs-drive-item:hover {
@@ -1574,6 +1577,25 @@ a.contact-item:hover {
 
 .fs-shortcut-item svg, .fs-drive-item svg {
     flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+    display: block;
+}
+
+.fs-item-glyph {
+    flex-shrink: 0;
+    width: 14px;
+    min-width: 14px;
+    height: 14px;
+    min-height: 14px;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1;
 }
 
 .fs-grid-wrapper {
@@ -2363,5 +2385,62 @@ a.contact-item:hover {
     transform: translateX(14px);
     background-color: #000;
 }
+
+/* Custom Context Menu inside File Browser */
+.fs-context-menu {
+    position: fixed;
+    background: #18181b;
+    border: 1px solid rgba(250, 204, 21, 0.15);
+    border-radius: 6px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    display: none;
+    min-width: 170px;
+    padding: 6px 0;
+    backdrop-filter: blur(10px);
+}
+.fs-context-menu.active {
+    display: block;
+}
+.fs-context-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.fs-context-menu li {
+    padding: 8px 16px;
+    font-size: 0.825rem;
+    color: var(--text-main);
+    cursor: pointer;
+    font-family: var(--font-outfit);
+    display: flex;
+    align-items: center;
+    transition: background 0.15s, color 0.15s;
+}
+.fs-context-menu li:hover {
+    background: var(--accent-gold);
+    color: #000;
+    font-weight: 500;
+}
+.fs-context-menu hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 6px 0;
+}
+
+/* Custom Resize Handles for Modal Card */
+.fs-resize-handle {
+    position: absolute;
+    z-index: 9999;
+}
+.handle-n { top: -4px; left: 4px; right: 4px; height: 8px; cursor: ns-resize; }
+.handle-s { bottom: -4px; left: 4px; right: 4px; height: 8px; cursor: ns-resize; }
+.handle-e { right: -4px; top: 4px; bottom: 4px; width: 8px; cursor: ew-resize; }
+.handle-w { left: -4px; top: 4px; bottom: 4px; width: 8px; cursor: ew-resize; }
+.handle-nw { top: -4px; left: -4px; width: 8px; height: 8px; cursor: nwse-resize; }
+.handle-ne { top: -4px; right: -4px; width: 8px; height: 8px; cursor: nesw-resize; }
+.handle-sw { bottom: -4px; left: -4px; width: 8px; height: 8px; cursor: nesw-resize; }
+.handle-se { bottom: -4px; right: -4px; width: 8px; height: 8px; cursor: nwse-resize; }
+
 
 
