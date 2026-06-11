@@ -1572,6 +1572,10 @@ a.contact-item:hover {
     color: var(--text-main);
 }
 
+.fs-shortcut-item svg, .fs-drive-item svg {
+    flex-shrink: 0;
+}
+
 .fs-grid-wrapper {
     flex: 1;
     padding: 20px;
