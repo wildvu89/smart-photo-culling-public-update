@@ -1637,6 +1637,12 @@ a.contact-item:hover {
     box-sizing: border-box;
 }
 
+.fs-item-card.folder-card {
+    height: 95px;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
 .fs-item-card:hover {
     background: rgba(255, 255, 255, 0.07);
     border-color: rgba(250, 204, 21, 0.35);
@@ -2454,7 +2460,7 @@ a.contact-item:hover {
     padding: 5px 0;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    overflow: hidden;
+    overflow: visible;
 }
 .fs-context-menu.active {
     display: block;
@@ -2484,6 +2490,8 @@ a.contact-item:hover {
     white-space: nowrap;
 }
 .fs-context-menu li svg {
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
     opacity: 0.6;
 }
