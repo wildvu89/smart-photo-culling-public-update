@@ -358,8 +358,13 @@
                             <button id="clear-filters-btn" class="secondary-btn btn-sm" style="padding: 2px 8px; font-size: 0.7rem; border-radius: 4px; height: 20px; line-height: 1; display: none; background: rgba(255,255,255,0.05); margin-left: 6px;">Xóa</button>
                         </div>
                         
-                        <div class="viewer-layout-controls">
-                            <button id="toggle-size-btn" class="secondary-btn btn-sm">
+                        <div class="viewer-layout-controls" style="display: flex; align-items: center; gap: 12px;">
+                            <!-- Zoom Slider -->
+                            <div class="grid-zoom-group" style="display: flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.15); padding: 4px 10px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.04);">
+                                <span style="font-size: 0.7rem; color: var(--text-dimmed); font-weight: 600; letter-spacing: 0.5px;">CỠ ẢNH:</span>
+                                <input type="range" id="thumbnail-zoom-slider" min="140" max="380" value="240" style="width: 70px; height: 3px; cursor: pointer; accent-color: var(--gold-primary);">
+                            </div>
+                            <button id="toggle-size-btn" class="secondary-btn btn-sm" style="display: none;">
                                 <span data-i18n="grid_large">Lưới Lớn</span>
                             </button>
                             <button id="keep-all-scene-btn" class="secondary-btn btn-sm text-success">
@@ -373,6 +378,31 @@
                         <!-- Photos inside selected scene rendered here -->
                     </div>
                 </section>
+
+                <!-- Right Column: Interactive Preview & Metadata Panel (Adobe Bridge style) -->
+                <aside class="details-sidebar glass-panel" id="details-sidebar">
+                    <div class="details-section-header">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-primary);"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        <span data-i18n="preview_panel_title" style="font-weight: 700; letter-spacing: 0.5px;">XEM TRƯỚC (PREVIEW)</span>
+                    </div>
+                    <div class="details-preview-box" id="details-preview-box">
+                        <img id="details-preview-img" src="" alt="Select an image to preview">
+                        <div class="preview-zoom-tip" id="preview-zoom-tip" data-i18n="zoom_tip">Click to zoom 100% | Drag to pan | Scroll to zoom</div>
+                        <div class="preview-loading-spinner" id="preview-spinner" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="details-section-header" style="margin-top: 15px;">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-primary);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        <span data-i18n="metadata_panel_title" style="font-weight: 700; letter-spacing: 0.5px;">THÔNG SỐ (METADATA)</span>
+                    </div>
+                    <div class="details-metadata-wrapper">
+                        <table class="details-metadata-table">
+                            <tbody id="details-metadata-tbody">
+                                <!-- Rendered dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </aside>
             </div>
 
             <!-- EXPORT BAR -->

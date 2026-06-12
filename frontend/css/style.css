@@ -838,6 +838,10 @@ button {
     gap: 8px;
 }
 
+:root {
+    --photo-card-width: 240px;
+}
+
 .images-grid-container {
     flex: 1;
     overflow-y: auto;
@@ -845,14 +849,7 @@ button {
     display: grid;
     gap: 20px;
     align-content: start;
-}
-
-.images-grid-container.grid-large {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-.images-grid-container.grid-small {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--photo-card-width), 1fr)) !important;
 }
 
 /* Photo Card */
@@ -2643,6 +2640,169 @@ a.contact-item:hover {
     box-shadow: 0 0 8px currentColor;
     border-color: #fff !important;
     transform: scale(1.3);
+}
+
+/* --- DETAILS SIDEBAR (ADOBE BRIDGE PREVIEW & METADATA PANEL) --- */
+.details-sidebar {
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background: rgba(20, 20, 22, 0.45);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: width var(--transition-smooth);
+}
+
+.details-section-header {
+    font-family: var(--font-outfit);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-dimmed);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 12px;
+}
+
+.details-preview-box {
+    position: relative;
+    height: 220px;
+    background: #0a0a0c;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
+    user-select: none;
+}
+
+#details-preview-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+    pointer-events: none; /* Let drag/zoom events handle via container or manually */
+}
+
+.details-preview-box.zoomed-in {
+    cursor: grab;
+}
+
+.details-preview-box.zoomed-in:active {
+    cursor: grabbing;
+}
+
+.preview-zoom-tip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.65);
+    padding: 3px 6px;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.details-preview-box:hover .preview-zoom-tip {
+    opacity: 1;
+}
+
+.preview-loading-spinner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(250, 204, 21, 0.1);
+    border-top: 2px solid var(--gold-primary);
+    border-radius: 50%;
+    animation: previewSpin 0.8s linear infinite;
+}
+
+@keyframes previewSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.details-metadata-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 12px;
+    padding-right: 4px;
+}
+
+/* Custom Scrollbar for Metadata Wrapper */
+.details-metadata-wrapper::-webkit-scrollbar {
+    width: 4px;
+}
+.details-metadata-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+.details-metadata-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.details-metadata-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.72rem;
+}
+
+.details-metadata-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.details-metadata-table tr:last-child {
+    border-bottom: none;
+}
+
+.details-metadata-table td {
+    padding: 8px 4px;
+    vertical-align: middle;
+}
+
+.details-metadata-table td.meta-label {
+    color: var(--text-dimmed);
+    font-weight: 500;
+    text-align: left;
+    width: 45%;
+}
+
+.details-metadata-table td.meta-value {
+    color: var(--text-main);
+    font-weight: 600;
+    text-align: right;
+    word-break: break-all;
+}
+
+/* Metadata Highlight / Category Row */
+.details-metadata-table tr.meta-category-row {
+    background: rgba(255, 255, 255, 0.02);
+}
+.details-metadata-table tr.meta-category-row td {
+    padding: 6px 4px;
+    color: var(--gold-primary);
+    font-family: var(--font-outfit);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 

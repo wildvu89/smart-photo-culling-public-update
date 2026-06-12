@@ -158,7 +158,26 @@ const translations = {
         parent_folder_tooltip: "\x54\x68\u01b0\x20\x6d\u1ee5\x63\x20\x63\x68\x61",
         selected_path_label: "\u0110\u01b0\u1edd\x6e\x67\x20\x64\u1eab\x6e\x3a",
         cancel_btn: "\x48\u1ee7\x79",
-        ok_btn: "\x43\x68\u1ecd\x6e"
+        ok_btn: "\x43\x68\u1ecd\x6e",
+        preview_panel_title: "\x58\x45\x4d\x20\x54\x52\u01af\u1eda\x43\x20\x28\x50\x52\x45\x56\x49\x45\x57\x29",
+        metadata_panel_title: "\x54\x48\u00d4\x4e\x47\x20\x53\u1ed0\x20\x28\x4d\x45\x54\x41\x44\x41\x54\x41\x29",
+        zoom_tip: "\x43\x6c\x69\x63\x6b\x20\x70\x68\u00f3\x6e\x67\x20\x74\x6f\x20\x31\x30\x30\x25\x20\x7c\x20\x4b\u00e9\x6f\x20\u0111\u1ec3\x20\x64\x69\x20\x63\x68\x75\x79\u1ec3\x6e\x20\x7c\x20\x43\x75\u1ed9\x6e\x20\x63\x68\x75\u1ed9\x74\x20\u0111\u1ec3\x20\x74\x68\x75\x20\x70\x68\u00f3\x6e\x67",
+        meta_filename: "\x54\u00ea\x6e\x20\x74\u1ec7\x70",
+        meta_filetype: "\u0110\u1ecb\x6e\x68\x20\x64\u1ea1\x6e\x67",
+        meta_filesize: "\x44\x75\x6e\x67\x20\x6c\u01b0\u1ee3\x6e\x67",
+        meta_dimensions: "\x4b\u00ed\x63\x68\x20\x74\x68\u01b0\u1edb\x63",
+        meta_date: "\x4e\x67\u00e0\x79\x20\x63\x68\u1ee5\x70",
+        meta_camera: "\x4d\u00e1\x79\x20\u1ea3\x6e\x68",
+        meta_lens: "\u1ed0\x6e\x67\x20\x6b\u00ed\x6e\x68",
+        meta_shutter: "\x54\u1ed1\x63\x20\u0111\u1ed9",
+        meta_aperture: "\x4b\x68\u1ea9\x75\x20\u0111\u1ed9",
+        meta_iso: "\x49\x53\x4f",
+        meta_final_score: "\u0110\x69\u1ec3\x6d\x20\x63\x68\u1ea5\x74\x20\x6c\u01b0\u1ee3\x6e\x67",
+        meta_composition: "\x42\u1ed1\x20\x63\u1ee5\x63\x20\x28\x41\x49\x29",
+        meta_sharpness: "\u0110\u1ed9\x20\x73\u1eaf\x63\x20\x6e\u00e9\x74\x20\x28\x41\x49\x29",
+        meta_noise: "\u0110\u1ed9\x20\x6e\x68\x69\u1ec5\x75\x20\x28\x41\x49\x29",
+        meta_eyes: "\x54\x72\u1ea1\x6e\x67\x20\x74\x68\u00e1\x69\x20\x6d\u1eaf\x74",
+        meta_exposure: "\x54\x72\u1ea1\x6e\x67\x20\x74\x68\u00e1\x69\x20\x73\u00e1\x6e\x67"
     },
     en: {
         tagline: "\x53\x63\x65\x6e\x65\x20\x47\x72\x6f\x75\x70\x69\x6e\x67\x20\x26\x20\x51\x75\x61\x6c\x69\x74\x79\x20\x41\x6e\x61\x6c\x79\x73\x69\x73\x20\x53\x79\x73\x74\x65\x6d",
@@ -287,7 +306,26 @@ const translations = {
         parent_folder_tooltip: "\x50\x61\x72\x65\x6e\x74\x20\x66\x6f\x6c\x64\x65\x72",
         selected_path_label: "\x50\x61\x74\x68\x3a",
         cancel_btn: "\x43\x61\x6e\x63\x65\x6c",
-        ok_btn: "\x53\x65\x6c\x65\x63\x74"
+        ok_btn: "\x53\x65\x6c\x65\x63\x74",
+        preview_panel_title: "\x50\x52\x45\x56\x49\x45\x57\x20\x50\x41\x4e\x45\x4c",
+        metadata_panel_title: "\x4d\x45\x54\x41\x44\x41\x54\x41\x20\x44\x45\x54\x41\x49\x4c\x53",
+        zoom_tip: "\x43\x6c\x69\x63\x6b\x20\x74\x6f\x20\x7a\x6f\x6f\x6d\x20\x31\x30\x30\x25\x20\x7c\x20\x44\x72\x61\x67\x20\x74\x6f\x20\x70\x61\x6e\x20\x7c\x20\x53\x63\x72\x6f\x6c\x6c\x20\x74\x6f\x20\x7a\x6f\x6f\x6d",
+        meta_filename: "\x46\x69\x6c\x65\x20\x4e\x61\x6d\x65",
+        meta_filetype: "\x46\x6f\x72\x6d\x61\x74",
+        meta_filesize: "\x46\x69\x6c\x65\x20\x53\x69\x7a\x65",
+        meta_dimensions: "\x44\x69\x6d\x65\x6e\x73\x69\x6f\x6e\x73",
+        meta_date: "\x44\x61\x74\x65\x20\x54\x61\x6b\x65\x6e",
+        meta_camera: "\x43\x61\x6d\x65\x72\x61",
+        meta_lens: "\x4c\x65\x6e\x73",
+        meta_shutter: "\x53\x68\x75\x74\x74\x65\x72",
+        meta_aperture: "\x41\x70\x65\x72\x74\x75\x72\x65",
+        meta_iso: "\x49\x53\x4f",
+        meta_final_score: "\x51\x75\x61\x6c\x69\x74\x79\x20\x53\x63\x6f\x72\x65",
+        meta_composition: "\x43\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e\x20\x28\x41\x49\x29",
+        meta_sharpness: "\x53\x68\x61\x72\x70\x6e\x65\x73\x73\x20\x28\x41\x49\x29",
+        meta_noise: "\x4e\x6f\x69\x73\x65\x20\x28\x41\x49\x29",
+        meta_eyes: "\x45\x79\x65\x73\x20\x53\x74\x61\x74\x75\x73",
+        meta_exposure: "\x45\x78\x70\x6f\x73\x75\x72\x65\x20\x53\x74\x61\x74\x75\x73"
     }
 };
 let appState = {
@@ -299,8 +337,115 @@ let appState = {
     sourceDir: '',
     exportDir: '',
     language: '\x76\x69', 
-    user: null
+    user: null,
+    selectedItem: null 
 };
+let zoomScale = 1.0;
+let panX = 0;
+let panY = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let startPanX = 0;
+let startPanY = 0;
+let dragMoved = false;
+function updatePreviewTransform() {
+    const previewBox = document.getElementById('\x64\x65\x74\x61\x69\x6c\x73\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x62\x6f\x78');
+    const previewImg = document.getElementById('\x64\x65\x74\x61\x69\x6c\x73\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x6d\x67');
+    if (!previewBox || !previewImg) return;
+    if (zoomScale <= 1.0) {
+        zoomScale = 1.0;
+        panX = 0;
+        panY = 0;
+        previewBox.classList.remove('\x7a\x6f\x6f\x6d\x65\x64\x2d\x69\x6e');
+        previewImg.style.transform = '\x74\x72\x61\x6e\x73\x6c\x61\x74\x65\x28\x30\x70\x78\x2c\x20\x30\x70\x78\x29\x20\x73\x63\x61\x6c\x65\x28\x31\x29';
+    } else {
+        previewBox.classList.add('\x7a\x6f\x6f\x6d\x65\x64\x2d\x69\x6e');
+        previewImg.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomScale})`;
+    }
+}
+function updateDetailsPanel(item) {
+    if (!item) return;
+    appState.selectedItem = item;
+    const lang = appState.language;
+    const previewImg = document.getElementById('\x64\x65\x74\x61\x69\x6c\x73\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x6d\x67');
+    const spinner = document.getElementById('\x70\x72\x65\x76\x69\x65\x77\x2d\x73\x70\x69\x6e\x6e\x65\x72');
+    if (previewImg) {
+        if (spinner) spinner.style.display = '\x62\x6c\x6f\x63\x6b';
+        zoomScale = 1.0;
+        panX = 0;
+        panY = 0;
+        updatePreviewTransform();
+        const previewUrl = '\x2f\x61\x70\x69\x2f\x70\x72\x65\x76\x69\x65\x77\x3f\x70\x61\x74\x68\x3d' + encodeURIComponent(item.file_path) + '\x26\x74\x6f\x6b\x65\x6e\x3d' + encodeURIComponent(sessionStorage.getItem('\x73\x70\x63\x5f\x61\x70\x69\x5f\x74\x6f\x6b\x65\x6e') || '');
+        previewImg.src = previewUrl;
+        previewImg.onload = () => {
+            if (spinner) spinner.style.display = '\x6e\x6f\x6e\x65';
+        };
+        previewImg.onerror = () => {
+            if (spinner) spinner.style.display = '\x6e\x6f\x6e\x65';
+        };
+    }
+    const tbody = document.getElementById('\x64\x65\x74\x61\x69\x6c\x73\x2d\x6d\x65\x74\x61\x64\x61\x74\x61\x2d\x74\x62\x6f\x64\x79');
+    if (tbody) {
+        tbody.innerHTML = '';
+        const metadata = item.metadata || {};
+        const analysis = item.analysis || {};
+        const formatBytes = (bytes) => {
+            if (!bytes) return '\x30\x20\x42';
+            const k = 1024;
+            const sizes = ['\x42', '\x4b\x42', '\x4d\x42', '\x47\x42'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + '\x20' + sizes[i];
+        };
+        const translateStatus = (val) => {
+            if (val === '\x4e\x6f\x72\x6d\x61\x6c') return translations[lang].normal;
+            if (val === '\x4f\x76\x65\x72\x65\x78\x70\x6f\x73\x65\x64') return translations[lang].overexposed;
+            if (val === '\x55\x6e\x64\x65\x72\x65\x78\x70\x6f\x73\x65\x64') return translations[lang].underexposed;
+            return val || translations[lang].n_a;
+        };
+        const rows = [
+            { type: '\x63\x61\x74\x65\x67\x6f\x72\x79', label: lang === '\x76\x69' ? '\x54\u1ec6\x50\x20\x54\x49\x4e\x20\x26\x20\x54\x48\u00d4\x4e\x47\x20\x54\x49\x4e' : '\x46\x49\x4c\x45\x20\x26\x20\x53\x59\x53\x54\x45\x4d\x20\x49\x4e\x46\x4f' },
+            { label: translations[lang].meta_filename || '\x54\u00ea\x6e\x20\x74\u1ec7\x70', value: item.filename },
+            { label: translations[lang].meta_filetype || '\u0110\u1ecb\x6e\x68\x20\x64\u1ea1\x6e\x67', value: metadata.file_type || '\x55\x6e\x6b\x6e\x6f\x77\x6e' },
+            { label: translations[lang].meta_filesize || '\x44\x75\x6e\x67\x20\x6c\u01b0\u1ee3\x6e\x67', value: formatBytes(metadata.file_size) },
+            { label: translations[lang].meta_date || '\x4e\x67\u00e0\x79\x20\x63\x68\u1ee5\x70', value: metadata.date_taken || '\x55\x6e\x6b\x6e\x6f\x77\x6e' },
+            { type: '\x63\x61\x74\x65\x67\x6f\x72\x79', label: '\x45\x58\x49\x46\x20\x4d\x45\x54\x41\x44\x41\x54\x41' },
+            { label: translations[lang].meta_camera || '\x4d\u00e1\x79\x20\u1ea3\x6e\x68', value: metadata.camera || '\x55\x6e\x6b\x6e\x6f\x77\x6e' },
+            { label: translations[lang].meta_lens || '\u1ed0\x6e\x67\x20\x6b\u00ed\x6e\x68', value: metadata.lens || '\x55\x6e\x6b\x6e\x6f\x77\x6e' },
+            { label: translations[lang].meta_shutter || '\x54\u1ed1\x63\x20\u0111\u1ed9', value: metadata.shutter_speed || '\x55\x6e\x6b\x6e\x6f\x77\x6e' },
+            { label: translations[lang].meta_aperture || '\x4b\x68\u1ea9\x75\x20\u0111\u1ed9', value: metadata.aperture || '\x55\x6e\x6b\x6e\x6f\x77\x6e' },
+            { label: translations[lang].meta_iso || '\x49\x53\x4f', value: metadata.iso || '\x55\x6e\x6b\x6e\x6f\x77\x6e' },
+            { type: '\x63\x61\x74\x65\x67\x6f\x72\x79', label: lang === '\x76\x69' ? '\x50\x48\u00c2\x4e\x20\x54\u00cd\x43\x48\x20\x43\x48\u1ea4\x54\x20\x4c\u01af\u1ee2\x4e\x47\x20\x28\x41\x49\x29' : '\x41\x49\x20\x51\x55\x41\x4c\x49\x54\x59\x20\x41\x4e\x41\x4c\x59\x53\x49\x53' },
+            { label: translations[lang].meta_final_score || '\u0110\x69\u1ec3\x6d\x20\x63\x68\u1ea5\x74\x20\x6c\u01b0\u1ee3\x6e\x67', value: `<strong class="\x24\x7b\x61\x6e\x61\x6c\x79\x73\x69\x73\x2e\x66\x69\x6e\x61\x6c\x5f\x73\x63\x6f\x72\x65\x20\x3e\x3d\x20\x38\x30\x20\x3f\x20\x27\x74\x65\x78\x74\x2d\x73\x75\x63\x63\x65\x73\x73\x27\x20\x3a\x20\x28\x61\x6e\x61\x6c\x79\x73\x69\x73\x2e\x66\x69\x6e\x61\x6c\x5f\x73\x63\x6f\x72\x65\x20\x3e\x3d\x20\x36\x30\x20\x3f\x20\x27\x74\x65\x78\x74\x2d\x77\x61\x72\x6e\x69\x6e\x67\x27\x20\x3a\x20\x27\x74\x65\x78\x74\x2d\x64\x61\x6e\x67\x65\x72\x27\x29\x7d">${Math.round(analysis.final_score)}/100</strong>`, isHtml: true },
+            { label: translations[lang].meta_sharpness || '\u0110\u1ed9\x20\x73\u1eaf\x63\x20\x6e\u00e9\x74', value: analysis.is_blurry ? `<span class="\x74\x65\x78\x74\x2d\x64\x61\x6e\x67\x65\x72">${translations[lang].blurry} (${analysis.sharpness}%)</span>` : `<span class="\x74\x65\x78\x74\x2d\x73\x75\x63\x63\x65\x73\x73">${translations[lang].sharp} (${analysis.sharpness}%)</span>`, isHtml: true },
+            { label: translations[lang].meta_eyes || '\x54\x72\u1ea1\x6e\x67\x20\x74\x68\u00e1\x69\x20\x6d\u1eaf\x74', value: analysis.faces_detected > 0 ? (analysis.is_eyes_closed ? `<span class="\x74\x65\x78\x74\x2d\x64\x61\x6e\x67\x65\x72">${translations[lang].closed}</span>` : `<span class="\x74\x65\x78\x74\x2d\x73\x75\x63\x63\x65\x73\x73">${translations[lang].open}</span>`) : translations[lang].n_a, isHtml: true },
+            { label: translations[lang].meta_exposure || '\x54\x72\u1ea1\x6e\x67\x20\x74\x68\u00e1\x69\x20\x73\u00e1\x6e\x67', value: translateStatus(analysis.exposure_status) },
+            { label: translations[lang].meta_noise || '\x4e\x68\x69\u1ec5\x75', value: analysis.is_noisy ? `<span class="\x74\x65\x78\x74\x2d\x64\x61\x6e\x67\x65\x72">${translations[lang].high} (${analysis.noise}%)</span>` : `<span>${translations[lang].low} (${analysis.noise}%)</span>`, isHtml: true },
+            { label: translations[lang].meta_composition || '\x42\u1ed1\x20\x63\u1ee5\x63\x20\x28\x41\x49\x29', value: `${analysis.composition_score}/100` }
+        ];
+        rows.forEach(row => {
+            const tr = document.createElement('\x74\x72');
+            if (row.type === '\x63\x61\x74\x65\x67\x6f\x72\x79') {
+                tr.className = '\x6d\x65\x74\x61\x2d\x63\x61\x74\x65\x67\x6f\x72\x79\x2d\x72\x6f\x77';
+                tr.innerHTML = `<td colspan="\x32" class="\x6d\x65\x74\x61\x2d\x63\x61\x74\x65\x67\x6f\x72\x79\x2d\x6c\x61\x62\x65\x6c">${row.label}</td>`;
+            } else {
+                const tdLabel = document.createElement('\x74\x64');
+                tdLabel.className = '\x6d\x65\x74\x61\x2d\x6c\x61\x62\x65\x6c';
+                tdLabel.textContent = row.label;
+                const tdValue = document.createElement('\x74\x64');
+                tdValue.className = '\x6d\x65\x74\x61\x2d\x76\x61\x6c\x75\x65';
+                if (row.isHtml) {
+                    tdValue.innerHTML = row.value;
+                } else {
+                    tdValue.textContent = row.value;
+                }
+                tr.appendChild(tdLabel);
+                tr.appendChild(tdValue);
+            }
+            tbody.appendChild(tr);
+        });
+    }
+}
 const screens = {
     auth: document.getElementById('\x61\x75\x74\x68\x2d\x73\x63\x72\x65\x65\x6e'),
     setup: document.getElementById('\x73\x65\x74\x75\x70\x2d\x73\x63\x72\x65\x65\x6e'),
@@ -390,6 +535,13 @@ function initSliders() {
     keepRateInput.addEventListener('\x63\x68\x61\x6e\x67\x65', (e) => {
         adjustKeepRate(parseInt(e.target.value));
     });
+    const thumbZoomInput = document.getElementById('\x74\x68\x75\x6d\x62\x6e\x61\x69\x6c\x2d\x7a\x6f\x6f\x6d\x2d\x73\x6c\x69\x64\x65\x72');
+    if (thumbZoomInput) {
+        document.documentElement.style.setProperty('\x2d\x2d\x70\x68\x6f\x74\x6f\x2d\x63\x61\x72\x64\x2d\x77\x69\x64\x74\x68', `${thumbZoomInput.value}px`);
+        thumbZoomInput.addEventListener('\x69\x6e\x70\x75\x74', (e) => {
+            document.documentElement.style.setProperty('\x2d\x2d\x70\x68\x6f\x74\x6f\x2d\x63\x61\x72\x64\x2d\x77\x69\x64\x74\x68', `${e.target.value}px`);
+        });
+    }
 }
 function showScreen(screenId) {
     Object.keys(screens).forEach(key => {
@@ -582,12 +734,111 @@ function initEventListeners() {
             adminModal.classList.remove('\x61\x63\x74\x69\x76\x65');
         }
     });
+    const previewBox = document.getElementById('\x64\x65\x74\x61\x69\x6c\x73\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x62\x6f\x78');
+    const previewImg = document.getElementById('\x64\x65\x74\x61\x69\x6c\x73\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x6d\x67');
+    if (previewBox && previewImg) {
+        previewBox.addEventListener('\x6d\x6f\x75\x73\x65\x64\x6f\x77\x6e', (e) => {
+            if (e.button !== 0) return; 
+            isDragging = true;
+            dragMoved = false;
+            startX = e.clientX;
+            startY = e.clientY;
+            startPanX = panX;
+            startPanY = panY;
+            e.preventDefault();
+        });
+        window.addEventListener('\x6d\x6f\x75\x73\x65\x6d\x6f\x76\x65', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+                dragMoved = true;
+            }
+            if (zoomScale > 1.0) {
+                panX = startPanX + dx;
+                panY = startPanY + dy;
+                const rect = previewBox.getBoundingClientRect();
+                const maxPanX = (rect.width * (zoomScale - 1)) / 2;
+                const maxPanY = (rect.height * (zoomScale - 1)) / 2;
+                panX = Math.max(-maxPanX, Math.min(maxPanX, panX));
+                panY = Math.max(-maxPanY, Math.min(maxPanY, panY));
+                updatePreviewTransform();
+            }
+        });
+        window.addEventListener('\x6d\x6f\x75\x73\x65\x75\x70', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            if (!dragMoved && e.target.closest('\x23\x64\x65\x74\x61\x69\x6c\x73\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x62\x6f\x78')) {
+                if (zoomScale > 1.0) {
+                    zoomScale = 1.0;
+                } else {
+                    zoomScale = 2.5;
+                    const rect = previewBox.getBoundingClientRect();
+                    const mouseX = e.clientX - rect.left;
+                    const mouseY = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    panX = (centerX - mouseX) * (zoomScale - 1);
+                    panY = (centerY - mouseY) * (zoomScale - 1);
+                }
+                updatePreviewTransform();
+            }
+        });
+        previewBox.addEventListener('\x77\x68\x65\x65\x6c', (e) => {
+            e.preventDefault();
+            const rect = previewBox.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            const zoomFactor = 1.15;
+            let nextZoom;
+            if (e.deltaY < 0) {
+                nextZoom = zoomScale * zoomFactor; 
+            } else {
+                nextZoom = zoomScale / zoomFactor; 
+            }
+            nextZoom = Math.max(1.0, Math.min(6.0, nextZoom));
+            if (nextZoom !== zoomScale) {
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const xFromCenter = mouseX - centerX - panX;
+                const yFromCenter = mouseY - centerY - panY;
+                const ratio = nextZoom / zoomScale;
+                panX = mouseX - centerX - xFromCenter * ratio;
+                panY = mouseY - centerY - yFromCenter * ratio;
+                zoomScale = nextZoom;
+                const maxPanX = (rect.width * (zoomScale - 1)) / 2;
+                const maxPanY = (rect.height * (zoomScale - 1)) / 2;
+                panX = Math.max(-maxPanX, Math.min(maxPanX, panX));
+                maxPanY_val = maxPanY; 
+                panY = Math.max(-maxPanY, Math.min(maxPanY, panY));
+                updatePreviewTransform();
+            }
+        }, { passive: false });
+    }
 }
 function initKeybinds() {
     document.addEventListener('\x6b\x65\x79\x64\x6f\x77\x6e', (e) => {
         if (appState.currentScreen !== '\x64\x61\x73\x68\x62\x6f\x61\x72\x64') return;
         if (document.activeElement.tagName === '\x49\x4e\x50\x55\x54') return;
         const key = e.key.toLowerCase();
+        if (key === '\x2b' || key === '\x3d' || (e.ctrlKey && (key === '\x2b' || key === '\x3d'))) {
+            e.preventDefault();
+            zoomScale = Math.min(6.0, zoomScale * 1.25);
+            updatePreviewTransform();
+            return;
+        }
+        if (key === '\x2d' || (e.ctrlKey && key === '\x2d')) {
+            e.preventDefault();
+            zoomScale = Math.max(1.0, zoomScale / 1.25);
+            updatePreviewTransform();
+            return;
+        }
+        if (e.ctrlKey && key === '\x30') {
+            e.preventDefault();
+            zoomScale = 1.0;
+            updatePreviewTransform();
+            return;
+        }
         const cards = Array.from(document.querySelectorAll('\x2e\x70\x68\x6f\x74\x6f\x2d\x63\x61\x72\x64'));
         if (cards.length > 0) {
             let index = cards.findIndex(c => c === document.activeElement || c.contains(document.activeElement));
@@ -1692,6 +1943,7 @@ function renderPhotoGrid(items) {
         card.addEventListener('\x66\x6f\x63\x75\x73', () => {
             document.querySelectorAll('\x2e\x70\x68\x6f\x74\x6f\x2d\x63\x61\x72\x64').forEach(c => c.classList.remove('\x73\x65\x6c\x65\x63\x74\x65\x64'));
             card.classList.add('\x73\x65\x6c\x65\x63\x74\x65\x64');
+            updateDetailsPanel(item);
         });
         card.addEventListener('\x63\x6c\x69\x63\x6b', () => {
             card.focus();
@@ -1767,6 +2019,9 @@ async function updatePhotoDecision(filePath, decision) {
             }
             updateHeaderStats();
             renderSidebar();
+            if (appState.selectedItem && appState.selectedItem.file_path === filePath) {
+                updateDetailsPanel(item);
+            }
         }
     } catch (err) {
         console.error('\x45\x72\x72\x6f\x72\x20\x74\x6f\x67\x67\x6c\x69\x6e\x67\x20\x64\x65\x63\x69\x73\x69\x6f\x6e\x3a', err);
@@ -1850,6 +2105,9 @@ async function updatePhotoMetadata(filePath, rating, colorLabel) {
             }
             updateHeaderStats();
             renderSidebar();
+            if (appState.selectedItem && appState.selectedItem.file_path === filePath) {
+                updateDetailsPanel(item);
+            }
         }
     } catch (err) {
         console.error('\x45\x72\x72\x6f\x72\x20\x75\x70\x64\x61\x74\x69\x6e\x67\x20\x6d\x65\x74\x61\x64\x61\x74\x61\x3a', err);
