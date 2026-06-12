@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=03.05">
+    <link rel="stylesheet" href="css/style.css?v=03.06">
 </head>
 <body>
     <div class="app-container">
@@ -434,8 +434,8 @@
                 <div class="modal-footer">
                     <button id="modal-ok-btn" class="primary-btn" data-i18n="close_btn">Đóng</button>
                 </div>
+            </div>
         </div>
-    </div>
 
     <!-- 5. COPYING / EXPORT PROGRESS OVERLAY -->
     <div id="copy-progress-overlay" class="modal-overlay">
@@ -477,7 +477,7 @@
             </div>
             
             <div class="fs-browser-body">
-                <div class="fs-sidebar">
+                <div class="fs-sidebar" id="fs-sidebar">
                     <div class="fs-sidebar-section">
                         <h4 data-i18n="shortcuts_title">Phím Tắt</h4>
                         <div id="fs-shortcuts-list"></div>
@@ -487,7 +487,7 @@
                         <div id="fs-drives-list"></div>
                     </div>
                 </div>
-                
+                <div class="fs-sidebar-resizer" id="fs-sidebar-resizer"></div>
                 <div class="fs-grid-wrapper">
                     <div id="fs-grid" class="fs-grid-container"></div>
                 </div>
@@ -617,6 +617,6 @@
     </div>
 
     <!-- Script Entrypoint -->
-    <script src="js/app.js?v=03.05"></script>
+    <script src="js/app.js?v=03.06"></script>
 </body>
 </html>

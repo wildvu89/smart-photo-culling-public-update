@@ -1,22 +1,16 @@
 {
-  "version": "V03.02",
-  "download_url": "https://github.com/wildvu89/smart-photo-culling-public-update/releases/tag/V03.02",
+  "version": "V03.03",
+  "download_url": "https://github.com/wildvu89/smart-photo-culling-public-update/releases/tag/V03.03",
   "changelog_vi": [
+    "Vá lỗ hổng bảo mật nghiêm trọng: Triển khai cơ chế API Token động giữa Frontend và local Backend, chặn đứng các nguy cơ bị tấn công chéo site (CSRF/CORS).",
+    "Nâng cấp thuật toán sinh mật khẩu tạm thời trên Central Server bằng hàm secrets an toàn mã hóa.",
     "Khắc phục triệt để vấn đề trùng tên file khi sao chép và tự động đổi tên bằng hậu tố số thứ tự (IMG_0001_1.jpg).",
-    "Mã hóa mật khẩu lưu cục bộ trong session.json kết hợp định danh phần cứng (motherboard UUID) chống sao chép tài khoản.",
-    "Băm mật khẩu người dùng bằng SHA-256 trên database, ẩn mật khẩu hiển thị tại bảng quản trị và đổi API Admin sang POST.",
-    "Hỗ trợ thêm định dạng ảnh RAW Panasonic (.rw2), Olympus (.orf), Pentax (.pef), TIFF và HEIF.",
-    "Cải thiện bộ lọc thư mục để tránh bỏ qua nhầm các thư mục con có chứa từ khóa.",
-    "Tối ưu hóa khả năng mở trình duyệt tự động trên hệ điều hành macOS.",
-    "Bổ sung cơ chế giới hạn tần suất (rate limit) đối với yêu cầu quên mật khẩu."
+    "Mã hóa mật khẩu lưu cục bộ trong session.json kết hợp định danh phần cứng (motherboard UUID) chống sao chép tài khoản."
   ],
   "changelog_en": [
+    "Security Hardening: Implemented dynamic API Token verification between Frontend and local Backend to block unauthorized cross-site access (CSRF/CORS).",
+    "Upgraded the central server password generator to use cryptographically secure secrets module.",
     "Resolved file copy collisions by appending sequence suffixes (IMG_0001_1.jpg) and maintaining sidecar XMPs.",
-    "Secured local session.json by encrypting saved credentials using motherboard UUID symmetric keys.",
-    "Hashed user passwords with SHA-256 in the database, hid passwords in admin lists, and changed admin API to POST.",
-    "Added support for Panasonic (.rw2), Olympus (.orf), Pentax (.pef), TIFF, and HEIF image formats.",
-    "Refined skip directory pattern filter to prevent false positive folder exclusions.",
-    "Optimized macOS launcher for faster automatic browser launch.",
-    "Added rate limiting protection for the forgot password endpoint."
+    "Secured local session.json by encrypting saved credentials using motherboard UUID symmetric keys."
   ]
 }
