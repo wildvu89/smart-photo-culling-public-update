@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=03.07">
+    <link rel="stylesheet" href="css/style.css?v=03.08">
 </head>
 <body>
     <div class="app-container">
@@ -336,6 +336,28 @@
                             <h2 id="current-scene-title">Nhóm #1</h2>
                             <p id="current-scene-desc" data-i18n="select_group_desc">Chọn một nhóm ảnh ở thanh bên để duyệt.</p>
                         </div>
+                        
+                        <!-- Filter Controls (Adobe Bridge Style) -->
+                        <div class="viewer-filter-controls" style="display: flex; align-items: center; gap: 12px; background: rgba(0, 0, 0, 0.2); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="font-size: 0.72rem; color: var(--text-dimmed); font-weight: 600; letter-spacing: 0.5px;">LỌC:</span>
+                            <div class="filter-stars-container" style="display: flex; gap: 2px;">
+                                <span class="filter-star-btn" data-value="1" style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: var(--transition-smooth); user-select: none;">★</span>
+                                <span class="filter-star-btn" data-value="2" style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: var(--transition-smooth); user-select: none;">★</span>
+                                <span class="filter-star-btn" data-value="3" style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: var(--transition-smooth); user-select: none;">★</span>
+                                <span class="filter-star-btn" data-value="4" style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: var(--transition-smooth); user-select: none;">★</span>
+                                <span class="filter-star-btn" data-value="5" style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: var(--transition-smooth); user-select: none;">★</span>
+                            </div>
+                            <div style="width: 1px; height: 14px; background: rgba(255, 255, 255, 0.15); margin: 0 4px;"></div>
+                            <div class="filter-colors-container" style="display: flex; gap: 6px; align-items: center;">
+                                <span class="filter-color-dot red" data-color="red" style="width: 10px; height: 10px; border-radius: 50%; background-color: #ef4444; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: var(--transition-smooth);"></span>
+                                <span class="filter-color-dot yellow" data-color="yellow" style="width: 10px; height: 10px; border-radius: 50%; background-color: #f59e0b; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: var(--transition-smooth);"></span>
+                                <span class="filter-color-dot green" data-color="green" style="width: 10px; height: 10px; border-radius: 50%; background-color: #10b981; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: var(--transition-smooth);"></span>
+                                <span class="filter-color-dot blue" data-color="blue" style="width: 10px; height: 10px; border-radius: 50%; background-color: #3b82f6; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: var(--transition-smooth);"></span>
+                                <span class="filter-color-dot purple" data-color="purple" style="width: 10px; height: 10px; border-radius: 50%; background-color: #8b5cf6; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: var(--transition-smooth);"></span>
+                            </div>
+                            <button id="clear-filters-btn" class="secondary-btn btn-sm" style="padding: 2px 8px; font-size: 0.7rem; border-radius: 4px; height: 20px; line-height: 1; display: none; background: rgba(255,255,255,0.05); margin-left: 6px;">Xóa</button>
+                        </div>
+                        
                         <div class="viewer-layout-controls">
                             <button id="toggle-size-btn" class="secondary-btn btn-sm">
                                 <span data-i18n="grid_large">Lưới Lớn</span>
@@ -456,6 +478,11 @@
                     <span id="copy-progress-pct">0%</span>
                     <span id="copy-progress-count">0 / 0 file</span>
                 </div>
+            </div>
+            
+            <div class="copy-actions" style="display: flex; gap: 10px; margin-top: 15px; width: 100%; justify-content: center;">
+                <button id="copy-pause-btn" class="secondary-btn btn-sm" style="padding: 8px 16px; min-width: 100px;">Tạm dừng</button>
+                <button id="copy-cancel-btn" class="btn-danger-sm btn-sm" style="padding: 8px 16px; min-width: 100px;">Hủy</button>
             </div>
         </div>
     </div>
@@ -617,6 +644,6 @@
     </div>
 
     <!-- Script Entrypoint -->
-    <script src="js/app.js?v=03.07"></script>
+    <script src="js/app.js?v=03.08"></script>
 </body>
 </html>

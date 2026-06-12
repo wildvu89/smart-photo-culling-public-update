@@ -812,11 +812,14 @@ button {
 }
 
 .scene-viewer-header {
-    height: 60px;
+    min-height: 60px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .scene-viewer-header h2 {
@@ -2621,6 +2624,25 @@ a.contact-item:hover {
 }
 .fs-context-menu li.disabled svg {
     opacity: 0.4;
+}
+
+/* Dashboard Header & Filter Controls */
+#dash-admin-btn {
+    display: none !important;
+}
+.lang-switcher.header-lang {
+    display: none !important;
+}
+
+.filter-star-btn.active {
+    color: #fbbf24 !important; /* Golden yellow */
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+}
+
+.filter-color-dot.active {
+    box-shadow: 0 0 8px currentColor;
+    border-color: #fff !important;
+    transform: scale(1.3);
 }
 
 
