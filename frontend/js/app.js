@@ -308,6 +308,12 @@ const screens = {
     dashboard: document.getElementById('\x64\x61\x73\x68\x62\x6f\x61\x72\x64\x2d\x73\x63\x72\x65\x65\x6e')
 };
 document.addEventListener('\x44\x4f\x4d\x43\x6f\x6e\x74\x65\x6e\x74\x4c\x6f\x61\x64\x65\x64', () => {
+    document.addEventListener('\x63\x6f\x6e\x74\x65\x78\x74\x6d\x65\x6e\x75', (e) => {
+        const isInput = e.target.tagName === '\x49\x4e\x50\x55\x54' || e.target.tagName === '\x54\x45\x58\x54\x41\x52\x45\x41' || e.target.isContentEditable;
+        if (!isInput) {
+            e.preventDefault();
+        }
+    });
     initSliders();
     initEventListeners();
     initKeybinds();
@@ -759,23 +765,25 @@ function _makeCtxSubmenuItem(icon, label, submenuItems) {
     return li;
 }
 function initFsContextMenu() {
-    const grid = document.getElementById('\x66\x73\x2d\x67\x72\x69\x64');
-    grid.addEventListener('\x63\x6f\x6e\x74\x65\x78\x74\x6d\x65\x6e\x75', (e) => {
-        const card = e.target.closest('\x2e\x66\x73\x2d\x69\x74\x65\x6d\x2d\x63\x61\x72\x64');
-        if (card) {
-            showFsContextMenu(e, {
-                path: card.dataset.path,
-                name: card.querySelector('\x2e\x66\x73\x2d\x69\x74\x65\x6d\x2d\x6e\x61\x6d\x65') ? card.querySelector('\x2e\x66\x73\x2d\x69\x74\x65\x6d\x2d\x6e\x61\x6d\x65').textContent : '',
-                type: card.classList.contains('\x66\x6f\x6c\x64\x65\x72\x2d\x63\x61\x72\x64') ? '\x66\x6f\x6c\x64\x65\x72' : '\x69\x6d\x61\x67\x65',
-                card: card
-            });
-        } else {
-            showFsContextMenu(e);
-        }
-    });
-    grid.addEventListener('\x73\x63\x72\x6f\x6c\x6c', () => {
-        if (fsContextMenu) fsContextMenu.classList.remove('\x61\x63\x74\x69\x76\x65');
-    });
+    const wrapper = document.querySelector('\x2e\x66\x73\x2d\x67\x72\x69\x64\x2d\x77\x72\x61\x70\x70\x65\x72');
+    if (wrapper) {
+        wrapper.addEventListener('\x63\x6f\x6e\x74\x65\x78\x74\x6d\x65\x6e\x75', (e) => {
+            const card = e.target.closest('\x2e\x66\x73\x2d\x69\x74\x65\x6d\x2d\x63\x61\x72\x64');
+            if (card) {
+                showFsContextMenu(e, {
+                    path: card.dataset.path,
+                    name: card.querySelector('\x2e\x66\x73\x2d\x69\x74\x65\x6d\x2d\x6e\x61\x6d\x65') ? card.querySelector('\x2e\x66\x73\x2d\x69\x74\x65\x6d\x2d\x6e\x61\x6d\x65').textContent : '',
+                    type: card.classList.contains('\x66\x6f\x6c\x64\x65\x72\x2d\x63\x61\x72\x64') ? '\x66\x6f\x6c\x64\x65\x72' : '\x69\x6d\x61\x67\x65',
+                    card: card
+                });
+            } else {
+                showFsContextMenu(e);
+            }
+        });
+        wrapper.addEventListener('\x73\x63\x72\x6f\x6c\x6c', () => {
+            if (fsContextMenu) fsContextMenu.classList.remove('\x61\x63\x74\x69\x76\x65');
+        });
+    }
 }
 function showFsContextMenu(e, targetItem = null) {
     e.preventDefault();
