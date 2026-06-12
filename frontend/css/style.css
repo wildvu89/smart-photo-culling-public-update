@@ -2805,5 +2805,48 @@ a.contact-item:hover {
     text-transform: uppercase;
 }
 
+/* --- LAYOUT RESIZERS (ADOBE BRIDGE STYLE PANEL SPLITTERS) --- */
+.layout-resizer {
+    background: transparent;
+    transition: background 0.15s, opacity 0.15s;
+    user-select: none;
+    z-index: 100;
+    flex-shrink: 0;
+    opacity: 0;
+}
+
+.layout-resizer:hover,
+.layout-resizer.dragging {
+    background: var(--gold-primary) !important;
+    opacity: 0.8;
+}
+
+.horizontal-resizer {
+    width: 6px;
+    cursor: col-resize;
+    margin: 0 -3px;
+    height: 100%;
+}
+
+.vertical-resizer {
+    height: 6px;
+    cursor: row-resize;
+    margin: -3px 0;
+    width: 100%;
+}
+
+/* Ensure workspace flex elements can be sized via width/height directly during drag */
+.scenes-sidebar, .details-sidebar {
+    transition: none !important;
+}
+
+.scene-viewer-header {
+    transition: none !important;
+}
+
+.details-preview-box {
+    transition: transform 0.1s ease-out, height 0.05s ease-out !important;
+}
+
 
 

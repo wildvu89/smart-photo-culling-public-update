@@ -327,6 +327,9 @@
                         <!-- Scene items dynamically rendered here -->
                     </div>
                 </aside>
+                
+                <!-- Left Sidebar Resizer Splitter -->
+                <div class="layout-resizer horizontal-resizer" id="left-sidebar-resizer"></div>
 
                 <!-- Main Section: Grid & Viewer -->
                 <section class="viewer-section">
@@ -372,12 +375,18 @@
                             </button>
                         </div>
                     </div>
+                    
+                    <!-- Header Height Resizer Splitter -->
+                    <div class="layout-resizer vertical-resizer" id="header-height-resizer"></div>
 
                     <!-- Images Grid -->
                     <div id="images-grid" class="images-grid-container grid-large">
                         <!-- Photos inside selected scene rendered here -->
                     </div>
                 </section>
+                
+                <!-- Right Sidebar Resizer Splitter -->
+                <div class="layout-resizer horizontal-resizer" id="right-sidebar-resizer"></div>
 
                 <!-- Right Column: Interactive Preview & Metadata Panel (Adobe Bridge style) -->
                 <aside class="details-sidebar glass-panel" id="details-sidebar">
@@ -390,6 +399,9 @@
                         <div class="preview-zoom-tip" id="preview-zoom-tip" data-i18n="zoom_tip">Click to zoom 100% | Drag to pan | Scroll to zoom</div>
                         <div class="preview-loading-spinner" id="preview-spinner" style="display: none;"></div>
                     </div>
+                    
+                    <!-- Preview Height Resizer Splitter -->
+                    <div class="layout-resizer vertical-resizer" id="preview-height-resizer"></div>
                     
                     <div class="details-section-header" style="margin-top: 15px;">
                         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-primary);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
