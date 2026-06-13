@@ -1,16 +1,20 @@
 {
-  "version": "V03.03",
-  "download_url": "https://github.com/wildvu89/smart-photo-culling-public-update/releases/tag/V03.03",
+  "version": "V03.04",
+  "download_url": "https://github.com/wildvu89/smart-photo-culling-public-update/releases/tag/V03.04",
   "changelog_vi": [
-    "Vá lỗ hổng bảo mật nghiêm trọng: Triển khai cơ chế API Token động giữa Frontend và local Backend, chặn đứng các nguy cơ bị tấn công chéo site (CSRF/CORS).",
-    "Nâng cấp thuật toán sinh mật khẩu tạm thời trên Central Server bằng hàm secrets an toàn mã hóa.",
-    "Khắc phục triệt để vấn đề trùng tên file khi sao chép và tự động đổi tên bằng hậu tố số thứ tự (IMG_0001_1.jpg).",
-    "Mã hóa mật khẩu lưu cục bộ trong session.json kết hợp định danh phần cứng (motherboard UUID) chống sao chép tài khoản."
+    "Thiết kế lại Giao diện Đăng nhập: Khắc phục triệt để tình trạng cắt chữ và lỗi hiển thị font, tích hợp khung cuộn chống tràn cho tab Đăng ký.",
+    "Nâng cấp chuyển đổi ngôn ngữ: Chuyển đổi ngôn ngữ VI/EN sang dạng nút tròn flag cao cấp hiển thị ở góc trên bên phải.",
+    "Thông tin liên hệ nhà phát triển: Bổ sung chân trang hiển thị thương hiệu Vision Creative Space, địa chỉ, Zalo/Phone và link liên kết Facebook.",
+    "Giới hạn gói đăng ký: Chỉ cho phép người dùng lựa chọn dùng thử 1 tuần, 6 tháng, 1 năm, 5 năm khi đăng ký tài khoản.",
+    "Luồng chạy Admin độc lập: Tự động chuyển hướng Admin vào Admin Panel riêng khi đăng nhập, gỡ bỏ hoàn toàn menu Admin trong app của người dùng thường.",
+    "Quản lý bản quyền Vĩnh viễn: Tích hợp nút gia hạn vĩnh viễn trực tiếp vào bảng quản lý của Admin."
   ],
   "changelog_en": [
-    "Security Hardening: Implemented dynamic API Token verification between Frontend and local Backend to block unauthorized cross-site access (CSRF/CORS).",
-    "Upgraded the central server password generator to use cryptographically secure secrets module.",
-    "Resolved file copy collisions by appending sequence suffixes (IMG_0001_1.jpg) and maintaining sidecar XMPs.",
-    "Secured local session.json by encrypting saved credentials using motherboard UUID symmetric keys."
+    "Redesigned Login Interface: Resolved input box font clipping and text layout issues, integrating scrollable area on Register tab.",
+    "Circular Language Switcher: Modernized VI/EN language selection to premium circular flags on the top right header.",
+    "Developer Contact Footer: Appended brand, address, phone/Zalo numbers, and clickable Facebook hyperlinks at the bottom.",
+    "Subscription Packages: Restricted registration package choices to 1-week Trial, 6 months, 1 year, and 5 years.",
+    "Standalone Admin Panel: Routed Admin roles directly to the User Management Panel and removed the Admin menu from the culler app.",
+    "Permanent License Control: Added a toggle checkbox in the Admin Panel to set users to permanent license status."
   ]
 }
